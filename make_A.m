@@ -18,4 +18,31 @@ function [A, b] = make_A (N)
             endfor
         endfor
     endif
+    b=get_b(N);
+endfunction
+
+function [A,b] = make_A_sparse(N)
+  [B,b]=make_A(N);
+  A=sparse(B);
+endfunction
+
+
+function [b] = get_b(N)
+  h = get_h(N);
+  F = zeros(N**2,1);
+  XY = h*[1:N];
+  for j=1:N
+    for i=1:N
+      F(i + (j-1)*N) = sin(pi*XY(i))*sin(pi*XY(j));
+    endfor
+  endfor
+  b=F;
+endfunction
+
+
+# calculates h
+# @param N
+# @return h
+function [h] = get_h (N)
+  h = 1/(N+1);
 endfunction
