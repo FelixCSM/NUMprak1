@@ -19,7 +19,7 @@ endfor
 ######
 ## (V2)
 ######
- 
+
 for i = N
   [A, b] = make_A_sparse(i);
   [L, R] = lu(A);
